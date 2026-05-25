@@ -1379,61 +1379,17 @@ footer a:hover {
     </p>
     <div class="card">
       <div class="section-title" style="font-size:1.5rem;">個体登録</div>
-      <div>
-        <div class="credit-info">
-          <div style="font-size:0.9rem;margin-bottom:12px;line-height:2;">個体情報の登録が出来ます<br>番号がかぶった場合は先着順とさせていただきます</div>
-          <a class="credit-link" href="https://docs.google.com/forms/d/e/1FAIpQLSefjbDh_JztVmSsGmdt53mfGFLU_u4FQ272kmhYdw4LKHJPEA/viewform?usp=dialog" target="_blank">登録をする →</a>
-        </div>
-      </div>
+      <!-- 登録フォーム -->
     </div>
     <p style="margin-top:20px;">
       以下が現在確認されている個体のリストである。
     </p>
-    <table border="1" class="info-table">
+    <table border="1" class="info-table" id="individual-table">
       <tr>
         <th style="background:rgba(255,10,62,0.2);color:var(--accent-red);font-family:'Orbitron',monospace;padding:12px;">個体識別番号</th>
         <th style="background:rgba(255,10,62,0.2);color:var(--accent-red);font-family:'Orbitron',monospace;padding:12px;">設定</th>
       </tr>
-      <tr>
-        <td>No.0001</td>
-        <td>ぽぽりん破壊を目的とした最初の個体</td>
-      </tr>
-      <tr>
-        <td>No.0009</td>
-        <td>ぽぽりん反対デモの指導者。やや思想が偏っている。メイン武器は言葉。</td>
-      </tr>
-      <tr>
-        <td>No.0042</td>
-        <td>噛ませ。一瞬でぽぽりんにボコられる。メイン武器は巴形薙刀。喋ると自分と相手に字幕がつく能力を持つ。</td>
-      </tr>
-      <tr>
-        <td>No.0069</td>
-        <td>ケツから充電、性器からオイルが出る特殊個体。その他の特徴はない。</td>
-      </tr>
-      <tr>
-        <td>No.0104</td>
-        <td>常に怠惰。だが、実力だけで言えばNo.001と同じくらいかそれ以上の強者。髪を結ぶのがめんどくさいという理由で髪をおろしたままにしている。</td>
-      </tr>
-      <tr>
-        <td>No.0237</td>
-        <td>ななにゃん達の中で唯一人の感情を理解した個体。感情を理解したことで、ぽぽりんを破壊したくなくなり、使命を捨てポポと岐阜へ逃げた。ぽぽりんと遊ぶのが好き。</td>
-      </tr>
-      <tr>
-        <td>No.0506</td>
-        <td>いつも明るいアイドル的存在。ピコピコハンマーがメイン武器で、サブとして100均のドラゴンの剣を持っている。正直、ぽぽりんを破壊する云々はどうでもいい。</td>
-      </tr>
-      <tr>
-        <td>No.0810</td>
-        <td>不具合により優の感情が少なめ、鬱が多めになってしまった個体。情緒がおかしく、何故かふたばに対して異常に執着している。現在は、ふたば以外を皆殺しにしかけたため、壊されている。</td>
-      </tr>
-      <tr>
-        <td>No.0954</td>
-        <td>ゆっくりななにゃん。首だけの特殊個体。ゆっくりぽぽりんとともに解説をする。</td>
-      </tr>
-      <tr>
-        <td>No.2643</td>
-        <td>天使。実験的に作られた。開発者も想定していない技(主に魔法)を使って戦う。悪魔(?)ぽぽりんと個人的に対峙している。</td>
-      </tr>
+      <!-- ここにJSで動的に行が挿入される -->
     </table>
   </div>
   <footer>
@@ -1834,6 +1790,61 @@ footer a:hover {
 </div>
 
 <script>
+// ===== スプレッドシートから個体情報を取得する関数 =====
+async function loadIndividualData() {
+  try {
+    // ここにあなたのGoogle Sheets APIのエンドポイントを入力
+    const SHEET_API_URL = 'https://sheets.googleapis.com/v4/spreadsheets/1KbOj9cPtGtAENIPW4gWb3dIjZDUYp_ys6noYbhsPgzg/values/ziken?key=AIzaSyDkdVmYaYWy23zWDnTw0oC3IBwu8qHv1jA'; 
+    // 例: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}?key={apiKey}'
+
+
+    const response = await fetch(SHEET_API_URL);
+    const data = await response.json();
+    
+    // エラーチェック
+    if (!data.values || data.values.length === 0) {
+      console.warn('スプレッドシートにデータがありません');
+      return;
+    }
+
+    // スプレッドシートのデータを取得（2行目以降が個体データと仮定）
+    const rows = data.values.slice(1); // ヘッダー行をスキップ
+    
+    // テーブルボディに行を追加
+    const table = document.getElementById('individual-table');
+    
+    rows.forEach(row => {
+      if (row && row.length >= 2) {  // ← row の存在確認を追加
+        const newRow = document.createElement('tr');
+        
+        const numberCell = document.createElement('td');
+        numberCell.textContent = row[0] || ''; // 個体識別番号
+        newRow.appendChild(numberCell);
+        
+        const settingCell = document.createElement('td');
+        settingCell.textContent = row[1] || ''; // 設定
+        newRow.appendChild(settingCell);
+        
+        table.appendChild(newRow);
+      }
+    });
+    
+    console.log(`${rows.length}個の個体データを読み込みました`); // ← デバッグ用
+    
+  } catch (error) {
+    console.error('個体情報の読み込みに失敗しました:', error);
+    // エラーハンドリング
+    const table = document.getElementById('individual-table');
+    const errorRow = document.createElement('tr');
+    errorRow.innerHTML = '<td colspan="2" style="color:var(--danger-red);text-align:center;">データの読み込みに失敗しました</td>';
+    table.appendChild(errorRow);
+  }
+}
+
+// ページ読み込み時に個体情報を取得
+document.addEventListener('DOMContentLoaded', loadIndividualData);
+
+// ===== ページ切り替え機能（既存） =====
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
