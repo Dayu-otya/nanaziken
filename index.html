@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
 <style>
-/* ===== CSS VARIABLES ===== */
 :root {
   --primary-bg: #0a0a0a;
   --secondary-bg: #1a0f0f;
@@ -24,7 +23,6 @@
   --system-green: #00ff41;
   --system-cyan: #00ffff;
 
-  /* layout tokens */
   --header-status-h: 28px;
   --header-main-h: 64px;
   --header-total: calc(var(--header-status-h) + var(--header-main-h));
@@ -36,7 +34,6 @@
   --gap-lg: 48px;
 }
 
-/* ===== RESET ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -48,7 +45,6 @@ body {
   line-height: 1.6;
 }
 
-/* ===== BOOT SEQUENCE ===== */
 .boot-sequence {
   position: fixed;
   inset: 0;
@@ -83,7 +79,6 @@ body {
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ===== BACKGROUND LAYERS ===== */
 body::before {
   content: '';
   position: fixed;
@@ -120,7 +115,6 @@ body::after {
 }
 @keyframes scanline { from{ transform:translateY(0); } to{ transform:translateY(100vh); } }
 
-/* ===== SYSTEM STATUS BAR ===== */
 .system-status {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -164,7 +158,6 @@ body::after {
 .status-dot.danger  { background: var(--danger-red);   box-shadow: 0 0 8px var(--danger-red);   animation: blink 1s infinite; }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
-/* ===== MAIN HEADER ===== */
 header {
   position: fixed;
   top: var(--header-status-h);
@@ -198,7 +191,6 @@ header::after {
 }
 @keyframes warningFlash { 0%,100%{opacity:0.5;} 50%{opacity:0.15;} }
 
-/* LOGO */
 .logo {
   font-family: 'Orbitron', monospace;
   font-size: 1.25rem;
@@ -241,7 +233,6 @@ header::after {
 }
 @keyframes pulseBadge { 0%,100%{transform:scale(1);} 50%{transform:scale(1.12);} }
 
-/* NAV */
 nav {
   display: flex;
   align-items: center;
@@ -284,7 +275,6 @@ nav button.active {
   box-shadow: inset 0 0 16px rgba(255,10,62,0.2), 0 0 20px rgba(255,10,62,0.3);
 }
 
-/* ===== DECORATIVE TARGET LOCK ===== */
 .target-lock {
   position: fixed;
   top: 50%; left: 50%;
@@ -307,7 +297,6 @@ nav button.active {
 .target-lock::after  { bottom:-2px; right:-2px; border-left:none; border-top:none; }
 @keyframes targetSpin { to{ transform: translate(-50%,-50%) rotate(360deg); } }
 
-/* ===== PAGES ===== */
 .page {
   display: none;
   min-height: 100vh;
@@ -324,7 +313,6 @@ nav button.active {
   to   { opacity:1; transform:translateY(0); }
 }
 
-/* HOME is flex */
 #page-home {
   display: none;
   flex-direction: column;
@@ -333,16 +321,19 @@ nav button.active {
   text-align: center;
   padding: var(--page-pt) 24px 80px;
 }
+
 #page-home.active { display: flex; }
 
-/* ===== SECTION WRAPPER ===== */
 .section-wrap {
   max-width: var(--section-max);
   margin: 0 auto;
   padding: 0 24px 100px;
 }
 
-/* ===== SECTION HEADER ===== */
+.terms-wide{
+  max-width: 1800px;
+}
+
 .section-eyebrow {
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.65rem;
@@ -381,10 +372,9 @@ nav button.active {
   box-shadow: 0 0 12px rgba(255,10,62,0.4);
 }
 
-/* ===== CARD ===== */
 .card {
   background: linear-gradient(135deg, rgba(26,15,15,0.88) 0%, rgba(10,10,10,0.96) 100%);
-  padding: 28px 32px;
+  padding: 14px 16px;
   box-shadow: 0 0 28px rgba(255,10,62,0.18);
   border: 1.5px solid var(--border-color);
   border-left: 5px solid var(--accent-red);
@@ -430,7 +420,6 @@ nav button.active {
   color: var(--text-primary);
 }
 
-/* ===== INFO TABLE ===== */
 .info-table { width: 100%; border-collapse: collapse; }
 .info-table th {
   background: rgba(255,10,62,0.18);
@@ -462,7 +451,6 @@ nav button.active {
 .info-table td:first-child::before { content: '▸ '; color: var(--danger-red); }
 .info-table tr:last-child td { border-bottom: none; }
 
-/* ===== TAGS ===== */
 .tag {
   display: inline-block;
   background: rgba(255,10,62,0.15);
@@ -481,7 +469,6 @@ nav button.active {
 .tag.orange { background: rgba(255,69,0,0.15);  color: var(--accent-orange); border-color: var(--accent-orange); box-shadow: 0 0 10px rgba(255,69,0,0.25); }
 .tag.red    { background: rgba(255,23,68,0.15);  color: var(--danger-red);    border-color: var(--danger-red);    box-shadow: 0 0 10px rgba(255,23,68,0.25); }
 
-/* ===== BUTTONS ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -520,7 +507,6 @@ nav button.active {
   box-shadow: 0 0 20px rgba(255,10,62,0.25);
 }
 
-/* ===== HERO (HOME) ===== */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -596,7 +582,6 @@ nav button.active {
   margin-bottom: 64px;
 }
 
-/* CHAR PREVIEW */
 .char-preview {
   display: flex;
   flex-direction: column;
@@ -644,8 +629,7 @@ nav button.active {
   letter-spacing: 5px;
   text-shadow: 0 0 22px rgba(255,10,62,0.6);
 }
-
-/* ===== DOWNLOAD PAGE ===== */
+  
 .dl-hero {
   background: linear-gradient(135deg, rgba(26,15,15,0.96), rgba(10,10,10,0.99));
   padding: 40px 36px;
@@ -733,7 +717,6 @@ nav button.active {
 .dl-btn.disabled { color: var(--text-secondary); border-color: var(--border-color); cursor: not-allowed; }
 .dl-btn.disabled:hover { transform: none; background: transparent; box-shadow: none; }
 
-/* NOTICE BOX */
 .notice-box {
   background: rgba(255,102,0,0.12);
   border: 2px solid var(--warning);
@@ -747,7 +730,6 @@ nav button.active {
 }
 .notice-box strong { color: var(--warning); font-family: 'Share Tech Mono', monospace; letter-spacing: 0.5px; }
 
-/* MEME BOX */
 .meme-box {
   background: linear-gradient(135deg, rgba(255,10,62,0.08), rgba(255,69,0,0.08));
   border: 3px solid var(--accent-red);
@@ -771,7 +753,6 @@ nav button.active {
 .meme-vs { font-size: 0.8rem; color: var(--text-secondary); font-family: 'Share Tech Mono', monospace; }
 .meme-antonym { font-family: 'Orbitron', monospace; font-size: 1.6rem; color: var(--accent-orange); text-decoration: line-through; opacity: 0.45; letter-spacing: 4px; }
 
-/* CREDITS */
 .credit-item {
   display: flex;
   align-items: flex-start;
@@ -795,8 +776,6 @@ nav button.active {
 .credit-link { font-size: 0.78rem; color: var(--accent-red); text-decoration: none; font-weight: 700; display: inline-block; margin-top: 4px; }
 .credit-link:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,62,0.5); }
 
-/* LEGAL */
-/* ===== TERMS TABS ===== */
 .terms-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -840,7 +819,6 @@ nav button.active {
 .legal-section ol,
 .legal-section ul { padding-left: 26px; font-size: 0.88rem; line-height: 2.1; color: var(--text-primary); margin-bottom: 10px; }
 
-/* CODE BLOCK */
 .code-block {
   background: rgba(255,10,62,0.08);
   border: 1.5px solid var(--accent-red);
@@ -853,7 +831,6 @@ nav button.active {
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
 }
 
-/* ===== FOOTER ===== */
 footer {
   position: relative;
   z-index: 3;
@@ -870,7 +847,6 @@ footer a { color: var(--accent-red); text-decoration: none; font-weight: 700; fo
 footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,62,0.5); }
 .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
 
-/* CHAR PROFILE HEADER BLOCK */
 .char-header {
   display: flex;
   align-items: center;
@@ -898,7 +874,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 .char-name { font-family: 'Orbitron', monospace; font-size: 1.8rem; color: var(--accent-red); margin-bottom: 5px; letter-spacing: 4px; text-shadow: 0 0 22px rgba(255,10,62,0.6); }
 .char-sub  { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 14px; font-family: 'Share Tech Mono', monospace; }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
   :root {
     --header-status-h: 24px;
@@ -941,7 +916,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 </head>
 <body>
 
-<!-- Boot Sequence -->
 <div class="boot-sequence">
   <div class="boot-text">SYSTEM BOOT INITIATED...</div>
   <div class="boot-text">LOADING COMBAT PROTOCOLS...</div>
@@ -951,11 +925,9 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   <div class="boot-text">[ UNIT-0001 OPERATIONAL ]</div>
 </div>
 
-<!-- Background layers -->
 <div class="grid-overlay"></div>
 <div class="target-lock"></div>
 
-<!-- System Status Bar -->
 <div class="system-status">
   <div class="sys-group">
     <div class="status-item"><div class="status-dot ok"></div><span>PWR:OK</span></div>
@@ -968,7 +940,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </div>
 </div>
 
-<!-- Header -->
 <header>
   <div class="logo" onclick="showPage('home')">
     <div class="logo-block">
@@ -989,7 +960,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </nav>
 </header>
 
-<!-- ===== HOME ===== -->
 <div class="page active" id="page-home">
   <span class="hero-badge">ANTI-POPPO ANNIHILATION SYSTEM</span>
   <h1 class="hero-title">なな<span>にゃん</span></h1>
@@ -1016,7 +986,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== INDIVIDUAL ===== -->
 <div class="page" id="page-individual">
   <div class="section-wrap">
     <p class="section-eyebrow">INDIVIDUAL IDENTIFICATION</p>
@@ -1074,7 +1043,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== CHARACTER ===== -->
 <div class="page" id="page-character">
   <div class="section-wrap">
     <p class="section-eyebrow">CHARACTER PROFILE</p>
@@ -1181,7 +1149,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== DOWNLOAD ===== -->
 <div class="page" id="page-download">
   <div class="section-wrap">
     <div class="dl-hero">
@@ -1264,7 +1231,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== GOODS ===== -->
 <div class="page" id="page-goods">
   <div class="section-wrap">
     <p class="section-eyebrow">GOODS</p>
@@ -1283,7 +1249,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== CREDITS ===== -->
 <div class="page" id="page-credits">
   <div class="section-wrap">
     <p class="section-eyebrow">CREDITS</p>
@@ -1350,9 +1315,8 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== TERMS ===== -->
 <div class="page" id="page-terms">
-  <div class="section-wrap">
+  <div class="section-wrap terms-wide">
     <p class="section-eyebrow">TERMS OF USE</p>
     <h2 class="section-title">利用規約</h2>
     <div class="card" style="padding:14px 24px;margin-bottom:16px;">
@@ -1363,7 +1327,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 <div class="terms-split">
 
-  <!-- 音声利用規約 -->
   <div class="card legal-section terms-panel">
 
     <div class="terms-tab-title">
@@ -1404,23 +1367,21 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <ul>
       <li>楽曲公開時に「ななにゃん」のクレジット表記を記載してください。</li>
       <li>
-        具体的な規約内容はPDFをご確認ください。
-        <a href="nanavc.pdf" target="_blank" style="color:var(--accent-red);font-weight:700;">
+        具体的な規約内容はPDFをご確認ください。</li>
+        <p> <a href="nanavc.pdf" target="_blank" style="color:var(--accent-red);font-weight:700;">
           利用規約PDF →
         </a>
-      </li>
+      </p>
     </ul>
 
   </div>
 
-  <!-- 画像利用規約 -->
   <div class="card legal-section terms-panel">
 
     <div class="terms-tab-title">
       画像利用規約
     </div>
 
-    <!-- とりあえず音声規約をそのまま流用 -->
 
     <h3>OKな内容</h3>
     <ul>
@@ -1474,11 +1435,11 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <ul>
       <li>楽曲公開時に「ななにゃん」のクレジット表記を記載してください。</li>
       <li>
-        具体的な規約内容はPDFをご確認ください。
-        <a href="nanaim.pdf" target="_blank" style="color:var(--accent-red);font-weight:700;">
+        具体的な規約内容はPDFをご確認ください。</li>
+        <p> <a href="nanaim.pdf" target="_blank" style="color:var(--accent-red);font-weight:700;">
           利用規約PDF →
         </a>
-      </li>
+      </p>
     </ul>
 
   </div>
@@ -1509,7 +1470,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </footer>
 </div>
 
-<!-- ===== PRIVACY ===== -->
 <div class="page" id="page-privacy">
   <div class="section-wrap">
     <p class="section-eyebrow">PRIVACY POLICY</p>
