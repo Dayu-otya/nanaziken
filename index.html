@@ -303,26 +303,29 @@ nav button.active {
   padding-top: var(--page-pt);
   position: relative;
   z-index: 3;
+  isolation: isolate;
+  overflow: clip;
+  flex-direction: column;
 }
+
+.page > .section-wrap {
+  flex: 1;
+}
+
 .page.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
   animation: pageLoad 0.5s ease;
 }
+
+.page > .section-wrap {
+  flex: 1;
+}
+
 @keyframes pageLoad {
   from { opacity:0; transform:translateY(20px); }
   to   { opacity:1; transform:translateY(0); }
 }
-
-#page-home {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--page-pt) 24px 80px;
-}
-
-#page-home.active { display: flex; }
 
 .section-wrap {
   max-width: var(--section-max);
@@ -629,7 +632,7 @@ nav button.active {
   letter-spacing: 5px;
   text-shadow: 0 0 22px rgba(255,10,62,0.6);
 }
-  
+
 .dl-hero {
   background: linear-gradient(135deg, rgba(26,15,15,0.96), rgba(10,10,10,0.99));
   padding: 40px 36px;
@@ -833,7 +836,6 @@ nav button.active {
 
 footer {
   position: relative;
-  z-index: 3;
   text-align: center;
   padding: 36px 20px;
   border-top: 3px solid var(--accent-red);
@@ -961,9 +963,10 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 </header>
 
 <div class="page active" id="page-home">
-  <span class="hero-badge">ANTI-POPPO ANNIHILATION SYSTEM</span>
-  <h1 class="hero-title">なな<span>にゃん</span></h1>
-  <p class="hero-kana">UNIT-0001 / NANA-NYAN</p>
+  <div class="section-wrap" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding-bottom: 80px;">
+    <span class="hero-badge">ANTI-POPPO ANNIHILATION SYSTEM</span>
+    <h1 class="hero-title">なな<span>にゃん</span></h1>
+    <p class="hero-kana">UNIT-0001 / NANA-NYAN</p>
   <p class="hero-desc">
     2026年3月23日、カロッターSNSに誕生した言葉遊び「ナナと長野」から派生した<br>
     対ぽぽりん殲滅型自律兵装<strong>「ななにゃん」</strong>。UTAU音源として稼働中。
@@ -972,18 +975,12 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <button class="btn btn-primary" onclick="showPage('download')">📦 DOWNLOAD VOICE</button>
     <button class="btn btn-outline"  onclick="showPage('individual')">READ MORE</button>
   </div>
-  <div class="char-preview">
+<div class="char-preview">
     <div class="char-avatar"></div>
     <div class="char-name-tag"><h2>ななにゃん</h2></div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
+  <div style="flex: 1; min-height: 60px;"></div>
+  </div>
 </div>
 
 <div class="page" id="page-individual">
@@ -996,7 +993,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </p>
 
     <div class="card">
-      <div class="card-label">個体登録</div>
+      <p>個体登録</p>
       <p style="font-size:0.9rem;margin-bottom:14px;line-height:2;">
         個体情報の登録が出来ます。番号がかぶった場合は先着順とさせていただきます。
       </p>
@@ -1033,14 +1030,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       </table>
     </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
+  
 </div>
 
 <div class="page" id="page-character">
@@ -1048,105 +1038,131 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <p class="section-eyebrow">CHARACTER PROFILE</p>
     <h2 class="section-title">ななにゃん</h2>
 
-    <div class="char-header">
-      <div class="char-icon">🐱</div>
-      <div class="char-meta">
-        <div class="char-name">ななにゃん</div>
-        <div class="char-sub">NANA-NYAN | ナナと長野の公式キャラクター</div>
-        <div>
-          <span class="tag">UTAU音源</span>
-          <span class="tag red">猫系</span>
-          <span class="tag orange">長野産</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-label">プロフィール</div>
-      <table class="info-table">
-        <tr><td>名前</td><td>ななにゃん(Nana-nyan)</td></tr>
-        <tr><td>型式番号</td><td>No.0001</td></tr>
-        <tr><td>由来</td><td>「ナナと長野」ミームのキャラクター化</td></tr>
-        <tr><td>特徴</td><td>猫耳、ぽぽりんへの嫉妬心</td></tr>
-        <tr><td>声質</td><td>未定</td></tr>
-        <tr><td>好きなもの</td><td>後で話し合おう</td></tr>
-        <tr><td>キャッチコピー</td><td>未定</td></tr>
-        <tr><td>外見</td><td>黒と深紅を基調とした軍服風ゴシックワンピースを纏う少女型兵器。</td></tr>
-        <tr><td>モチーフ</td><td>赤色を基調としたデザイン。「ぽぽりん破壊兵器」として設計された存在。</td></tr>
-        <tr><td>性格</td><td>しっかり者のツンデレ。</td></tr>
-      </table>
-    </div>
+<div class="card">
+  <p>プロフィール概要</p>
+  <table class="info-table">
+    <tr><td>名前</td><td>ななにゃん(Nana-nyan)</td></tr>
+    <tr><td>型式番号</td><td>No.0001</td></tr>
+    <tr><td>外見</td><td>黒と深紅を基調とした軍服風ゴシックワンピースを纏う少女型兵器。</td></tr>
+    <tr><td>性格</td><td>しっかり者のツンデレ。</td></tr>
+    <tr><td>設定</td><td>「ナナと長野」ミームをもとに開発された対ぽぽ存在兵器。</td></tr>
+  </table>
+  <div style="margin-top:18px;">
+    <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
+      onclick="document.getElementById('profile-detail').style.display='block';this.style.display='none';">
+      詳細プロフィールを見る ▼
+    </button>
+  </div>
+</div>
 
-    <div class="card">
-      <div class="card-label">設定</div>
-      <p>
-        ななにゃんは、「ナナと長野」ミームをもとに開発された対ぽぽ存在兵器。<br><br>
-        0001〜7710までの識別個体が存在しており、現在確認されている個体はその一部のみである。<br><br>
-        ベース人格として「長野原ナナ」の思考パターンが移植されているが、感情理解機能には重大な欠陥があり、他者への共感能力をほとんど持たない。<br><br>
-        一方で、ぽぽりん関連単語に対してのみ感情出力が異常増幅する。
-      </p>
-    </div>
+<div id="profile-detail" style="display:none;">
+    <div style="margin-bottom:20px;">
+    <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
+      onclick="document.getElementById('profile-detail').style.display='none';this.closest('#profile-detail').previousElementSibling.querySelector('button').style.display='inline-flex';">
+      閉じる ▲
+    </button>
+  </div>
+  <div class="card">
+    <p>詳細プロフィール</p>
+    <table class="info-table">
+      <tr><td>名前</td><td>ななにゃん(Nana-nyan)</td></tr>
+      <tr><td>型式番号</td><td>No.0001</td></tr>
+      <tr><td>由来</td><td>「ナナと長野」ミームのキャラクター化</td></tr>
+      <tr><td>特徴</td><td>猫耳、ぽぽりんへの嫉妬心</td></tr>
+      <tr><td>声質</td><td>未定</td></tr>
+      <tr><td>好きなもの</td><td>後で話し合おう</td></tr>
+      <tr><td>キャッチコピー</td><td>未定</td></tr>
+      <tr><td>外見</td><td>黒と深紅を基調とした軍服風ゴシックワンピースを纏う少女型兵器。</td></tr>
+      <tr><td>モチーフ</td><td>赤色を基調としたデザイン。「ぽぽりん破壊兵器」として設計された存在。</td></tr>
+      <tr><td>性格</td><td>しっかり者のツンデレ。</td></tr>
+    </table>
+  </div>
 
-    <p class="section-eyebrow" style="margin-top:40px;">MEME ORIGIN</p>
-    <h2 class="section-title">ナナと長野とは</h2>
+  <div class="card">
+    <p>設定</p>
+    <p>
+      ななにゃんは、「ナナと長野」ミームをもとに開発された対ぽぽ存在兵器。<br><br>
+      0001〜7710までの識別個体が存在しており、現在確認されている個体はその一部のみである。<br><br>
+      ベース人格として「長野原ナナ」の思考パターンが移植されているが、感情理解機能には重大な欠陥があり、他者への共感能力をほとんど持たない。<br><br>
+      一方で、ぽぽりん関連単語に対してのみ感情出力が異常増幅する。
+    </p>
+  </div>
 
-    <div class="meme-box">
-      <div class="meme-word">ナナと長野</div>
-      <div class="meme-vs">← 対義語 →</div>
-      <div class="meme-antonym">ポポと岐阜</div>
-      <p style="font-size:0.72rem;color:var(--text-secondary);margin-top:10px;font-family:'Share Tech Mono',monospace;">※バナナ🍌説もあり</p>
-    </div>
+  <div style="margin-bottom:20px;">
+    <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
+      onclick="document.getElementById('profile-detail').style.display='none';this.closest('#profile-detail').previousElementSibling.querySelector('button').style.display='inline-flex';">
+      閉じる ▲
+    </button>
+  </div>
+</div>
 
-    <div class="card">
-      <div class="card-label">概要</div>
-      <p>
-        「ナナと長野(ななとながの)」とは、SNS「Karotter」内で発生した言葉遊び、およびネットミームである。
-        2026年3月23日、ユーザーの <strong>@Dragon_poweeeer</strong> 氏によって生み出された。
-        「ポポと岐阜」の対義語として定義されており、「バナナ🍌」という説も存在する。
-      </p>
-    </div>
+<p class="section-eyebrow" style="margin-top:40px;">MEME ORIGIN</p>
+<h2 class="section-title">ナナと長野とは</h2>
 
-    <div class="card">
-      <div class="card-label">基本情報</div>
-      <table class="info-table">
-        <tr><td>読み</td><td>ななとながの</td></tr>
-        <tr><td>カテゴリ</td><td><span class="tag">スラング</span><span class="tag red">言葉遊び</span><span class="tag orange">ミーム</span></td></tr>
-        <tr><td>初出</td><td>2026年3月23日</td></tr>
-        <tr><td>発案者</td><td>@Dragon_poweeeer</td></tr>
-        <tr><td>主な意味</td><td>ポポと岐阜の対義語(バナナ説あり)</td></tr>
-        <tr><td>公式アカウント</td><td>@newnanatonagano / @nanatonagano_ko</td></tr>
-        <tr><td>運営</td><td>@inmukai_syosetu</td></tr>
-        <tr><td>出典</td><td><a href="https://karotter-wiki.vercel.app/article/article.html?id=67cfa4e4-6c6a-40b3-8768-30a8fe25bd99" target="_blank" style="color:var(--accent-red)">カロッター用語辞典 →</a></td></tr>
-      </table>
-    </div>
 
-    <div class="card">
-      <div class="card-label">発展と広まり</div>
-      <p>
-        もともとカロッター内の一投稿から始まったこの言葉遊びは、そのシュールさとリズムの良さからじわじわと拡散。
-        2026年5月時点では公式アカウントが2つ立ち上がり、ミームとしての地位を確立した。<br><br>
-        さらにそのミームを擬人化・キャラクター化した<strong>「ななにゃん」</strong>が誕生し、UTAU音源プロジェクトとして展開中。
-      </p>
-    </div>
+<div class="card">
+  <p>概要</p>
+  <p>
+    2026年3月23日、SNS「Karotter」で <strong>@Dragon_poweeeer</strong> 氏が生み出した言葉遊び・ネットミーム。
+    「ポポと岐阜」の対義語として定義されており、「バナナ」という説も存在する。
+  </p>
+  <div style="margin-top:18px;">
+    <button id="meme-open-btn" class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
+      onclick="document.getElementById('meme-detail').style.display='block';document.getElementById('meme-open-btn').style.display='none';">
+      詳細を見る ▼
+    </button>
+  </div>
+</div>
+
+<div id="meme-detail" style="display:none;">
+    <div style="margin-bottom:20px;">
+    <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
+      onclick="document.getElementById('meme-detail').style.display='none';document.getElementById('meme-open-btn').style.display='inline-flex';">
+      閉じる ▲
+    </button>
+  </div>
+  <div class="card">
+    <p>基本情報</p>
+    <table class="info-table">
+      <tr><td>読み</td><td>ななとながの</td></tr>
+      <tr><td>カテゴリ</td><td><span class="tag">スラング</span><span class="tag red">言葉遊び</span><span class="tag orange">ミーム</span></td></tr>
+      <tr><td>初出</td><td>2026年3月23日</td></tr>
+      <tr><td>発案者</td><td>@Dragon_poweeeer</td></tr>
+      <tr><td>主な意味</td><td>ポポと岐阜の対義語(バナナ説あり)</td></tr>
+      <tr><td>公式アカウント</td><td>@newnanatonagano / @nanatonagano_ko</td></tr>
+      <tr><td>運営</td><td>@inmukai_syosetu</td></tr>
+      <tr><td>出典</td><td><a href="https://karotter-wiki.vercel.app/article/article.html?id=67cfa4e4-6c6a-40b3-8768-30a8fe25bd99" target="_blank" style="color:var(--accent-red)">カロッター用語辞典 →</a></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <p>発展と広まり</p>
+    <p>
+      もともとカロッター内の一投稿から始まったこの言葉遊びは、そのシュールさとリズムの良さからじわじわと拡散。
+      2026年5月時点では公式アカウントが2つ立ち上がり、ミームとしての地位を確立した。<br><br>
+      さらにそのミームを擬人化・キャラクター化した<strong>「ななにゃん」</strong>が誕生し、UTAU音源プロジェクトとして展開中。
+    </p>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
+      onclick="document.getElementById('meme-detail').style.display='none';document.getElementById('meme-open-btn').style.display='inline-flex';">
+      閉じる ▲
+    </button>
+  </div>
+</div>
 
     <div class="card" style="background:linear-gradient(135deg,rgba(255,10,62,0.08),rgba(255,69,0,0.08));border-left-color:var(--danger-red);">
-      <div class="card-label">UTAU音源について</div>
+      <p>UTAU音源について</p>
       <p style="margin-bottom:18px;">
         ななにゃんのUTAU音源は現在製作中です。<br>
         完成次第、このサイトのダウンロードページにて無料配布予定です。<br>
         配布ルールは<strong>利用規約</strong>をご確認ください。
       </p>
-      <button class="btn btn-primary" onclick="showPage('download')" style="font-size:0.78rem;padding:12px 24px;">DOWNLOAD PAGE →</button>
+<button class="btn btn-primary" onclick="showPage('download')" style="font-size:0.78rem;padding:12px 24px;">DOWNLOAD PAGE →</button>
     </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
 </div>
 
 <div class="page" id="page-download">
@@ -1165,45 +1181,19 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <div class="dl-card">
       <div class="dl-icon">🌸</div>
       <div class="dl-info">
-        <h3>ななにゃん 基本音</h3>
-        <p>基本音源バンク。標準的な日本語50音＋拡張音。UTAUにそのまま導入可能。</p>
+        <h3>UTAU音源</h3>
+        <p>ダウンロード待ってるよー</p>
         <div class="dl-meta">
           <span class="tag">UTAU対応</span>
-          <span class="tag red">ver 0.0 α</span>
+          <span class="tag red">ver 0.0</span>
           <span class="tag">準備中</span>
         </div>
       </div>
       <button class="dl-btn disabled">準備中…</button>
     </div>
 
-    <div class="dl-card">
-      <div class="dl-icon">❄️</div>
-      <div class="dl-info">
-        <h3>ななにゃん ささやき音</h3>
-        <p>ウィスパー調の息多め音源。静かで繊細な楽曲向け。COREの導入が前提。</p>
-        <div class="dl-meta">
-          <span class="tag">UTAU対応</span>
-          <span class="tag orange">制作予定</span>
-        </div>
-      </div>
-      <button class="dl-btn disabled">準備中…</button>
-    </div>
-
-    <div class="dl-card">
-      <div class="dl-icon">⚡</div>
-      <div class="dl-info">
-        <h3>ななにゃん 叫び音源</h3>
-        <p>力強いパワー系音源。激しいサビや勢いのある楽曲向け。COREの導入が前提。</p>
-        <div class="dl-meta">
-          <span class="tag">UTAU対応</span>
-          <span class="tag orange">制作予定</span>
-        </div>
-      </div>
-      <button class="dl-btn disabled">準備中…</button>
-    </div>
-
     <div class="card" style="margin-top:8px;">
-      <div class="card-label">動作環境・推奨設定</div>
+      <p>動作環境・推奨設定</p>
       <table class="info-table">
         <tr><td>対応ソフト</td><td>UTAU(v0.4.18e 以降推奨) / OpenUTAU</td></tr>
         <tr><td>対応OS</td><td>Windows 10/11、macOS(OpenUTAU経由)</td></tr>
@@ -1214,21 +1204,13 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </div>
 
     <div class="card">
-      <div class="card-label">更新履歴</div>
+      <p>更新履歴</p>
       <p style="color:var(--text-secondary);font-size:0.87rem;font-family:'Share Tech Mono',monospace;line-height:2.2;">
         2026.05.22 — サイト公開、音源は準備中<br>
         2026.03.23 — ナナと長野ミーム誕生(起源)
       </p>
     </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
 </div>
 
 <div class="page" id="page-goods">
@@ -1239,14 +1221,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <p>現在、ななにゃんの公式グッズは準備中です。<br>完成次第、このページでお知らせします。</p>
     </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
+    
 </div>
 
 <div class="page" id="page-credits">
@@ -1255,7 +1230,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <h2 class="section-title">クレジット</h2>
 
     <div class="card">
-      <div class="card-label">プロジェクト参加者</div>
+      <p>プロジェクト参加者</p>
       <div class="credit-item">
         <div class="credit-avatar">🏠</div>
         <div>
@@ -1286,11 +1261,10 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </div>
 
     <div class="card">
-      <div class="card-label">使用ツール・素材</div>
+      <p>使用ツール・素材</p>
       <table class="info-table">
         <tr><td>UTAU</td><td>飴屋／菖蒲 氏制作のフリーウェア歌声合成ソフト</td></tr>
         <tr><td>OpenUTAU</td><td>Exploiting Cat 制作(MIT License)</td></tr>
-        <tr><td>フォント</td><td>Google Fonts(Noto Sans JP, Rajdhani, Orbitron, Share Tech Mono)</td></tr>
         <tr><td>情報出典</td><td><a href="https://karotter-wiki.vercel.app" target="_blank" style="color:var(--accent-red)">カロッター用語辞典</a></td></tr>
         <tr><td>プラットフォーム</td><td>カロッター(<a href="https://karotter.com" target="_blank" style="color:var(--accent-red)">Karotter</a>)</td></tr>
       </table>
@@ -1298,21 +1272,15 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
     <div class="card" style="text-align:center;padding:32px;">
       <p style="font-size:1.2rem;font-weight:700;font-family:'Orbitron',monospace;color:var(--accent-red);margin-bottom:10px;letter-spacing:1.5px;text-shadow:0 0 22px rgba(255,10,62,0.5);">
-        🙏 このプロジェクトに関わってくださったすべての方へ
+        このプロジェクトに関わってくださったすべての方へ
       </p>
       <p style="color:var(--text-secondary);font-size:0.88rem;line-height:2.1;">
-        ナナと長野プロジェクトに興味を持っていただき、ありがとうございます。<br>
+        ナナと長野プロジェクトに興味を持っていただき、ありがとうございます。🙏<br>
         これからも「ポポと岐阜の対義語」として頑張ります。
       </p>
     </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
+    
 </div>
 
 <div class="page" id="page-terms">
@@ -1326,7 +1294,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </div>
 
 <div class="terms-split">
-
   <div class="card legal-section terms-panel">
 
     <div class="terms-tab-title">
@@ -1373,7 +1340,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
         </a>
       </p>
     </ul>
-
   </div>
 
   <div class="card legal-section terms-panel">
@@ -1381,8 +1347,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <div class="terms-tab-title">
       画像利用規約
     </div>
-
-
     <h3>OKな内容</h3>
     <ul>
       <li>個人的な創作・公開</li>
@@ -1460,14 +1424,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home')">ホーム</a>
-      <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
+    
 </div>
 
 <div class="page" id="page-privacy">
@@ -1491,34 +1448,47 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <p>本プライバシーポリシーは予告なく変更される場合があります。重要な変更があった場合は公式カロッターアカウント(@newnanatonagano)でお知らせします。</p>
     </div>
   </div>
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home')">ホーム</a>
-      <a href="#" onclick="showPage('terms')">利用規約</a>
-      <a href="#" onclick="showPage('credits')">クレジット</a>
-    </div>
-    © 2026 ナナと長野プロジェクト / @inmukai_syosetu
-  </footer>
+    
 </div>
 
+<footer>
+  <div class="footer-links">
+    <a href="#" onclick="showPage('terms')">利用規約</a>
+    <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
+    <a href="#" onclick="showPage('credits')">クレジット</a>
+  </div>
+  © 2026 ナナと長野プロジェクト / @inmukai_syosetu
+</footer>
+
 <script>
-function showPage(name) {
+const validPages = ['home','individual','character','download','goods','credits','terms','privacy'];
+
+function renderPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   const nb = document.getElementById('nav-' + name);
   if (nb) nb.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  location.hash = name;
 }
 
-const hash = location.hash.replace('#', '');
-const validPages = ['home','individual','character','download','goods','credits','terms','privacy'];
-if (hash && validPages.includes(hash)) {
-  showPage(hash);
-} else {
-  showPage('home');
+function showPage(name) {
+  renderPage(name);
+  const current = history.state?.page;
+  if (current !== name) {
+    history.pushState({ page: name }, '', '#' + name);
+  }
 }
+
+window.addEventListener('popstate', (e) => {
+  const name = e.state?.page ?? 'home';
+  renderPage(name);
+});
+
+const hash = location.hash.replace('#', '');
+const initPage = (hash && validPages.includes(hash)) ? hash : 'home';
+history.replaceState({ page: initPage }, '', '#' + initPage);
+renderPage(initPage);
 </script>
 </body>
 </html>
