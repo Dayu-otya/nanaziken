@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ななにゃん | 対ぽぽ殲滅型自律兵装 UNIT-0001</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style"
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap"
+  onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</noscript>
 
 <style>
 :root {
@@ -56,8 +62,8 @@ body {
   justify-content: center;
   color: var(--system-green);
   font-family: 'Share Tech Mono', monospace;
-  animation: fadeOutBoot 1.5s ease 3s forwards;
   pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 @keyframes fadeOutBoot { to { opacity: 0; visibility: hidden; } }
 
@@ -66,7 +72,7 @@ body {
   letter-spacing: 2px;
   margin: 6px 0;
   opacity: 0;
-  animation: bootLine 0.3s ease forwards;
+  animation: bootLine 0.2s ease forwards;
 }
 .boot-text:nth-child(1) { animation-delay: 0.2s; }
 .boot-text:nth-child(2) { animation-delay: 0.5s; }
@@ -83,12 +89,16 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url('背景.jpg');
   background-size: cover;
   background-position: center;
   z-index: 0;
-  opacity: 0.28;
+  opacity: 0;
   pointer-events: none;
+  transition: opacity 1s ease;
+}
+body.bg-loaded::before {
+  background-image: url('背景.jpg');
+  opacity: 0.28;
 }
 
 .grid-overlay {
@@ -99,21 +109,7 @@ body::before {
     repeating-linear-gradient(90deg,  transparent, transparent 49px, rgba(255,10,62,0.07) 49px, rgba(255,10,62,0.07) 50px);
   z-index: 1;
   pointer-events: none;
-  animation: gridPulse 5s ease-in-out infinite;
 }
-@keyframes gridPulse { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(transparent 50%, rgba(255,10,62,0.06) 50%);
-  background-size: 100% 4px;
-  z-index: 2;
-  pointer-events: none;
-  animation: scanline 10s linear infinite;
-}
-@keyframes scanline { from{ transform:translateY(0); } to{ transform:translateY(100vh); } }
 
 .system-status {
   position: fixed;
@@ -906,7 +902,8 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   .hero-title  { letter-spacing: 6px; }
   .meme-word   { font-size: 1.9rem; letter-spacing: 4px; }
 
-  .sys-group .status-item:nth-child(n+3) { display: none; }
+  .system-status { font-size: 0.58rem; padding: 0 10px; }
+  .sys-group { gap: 8px; }
 }
 
 @media (max-width: 440px) {
@@ -962,7 +959,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </nav>
 </header>
 
-<div class="page active" id="page-home">
+<div class="page" id="page-home">
   <div class="section-wrap" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding-bottom: 80px;">
     <span class="hero-badge">ANTI-POPPO ANNIHILATION SYSTEM</span>
     <h1 class="hero-title">なな<span>にゃん</span></h1>
@@ -997,7 +994,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <p style="font-size:0.9rem;margin-bottom:14px;line-height:2;">
         個体情報の登録が出来ます。番号がかぶった場合は先着順とさせていただきます。
       </p>
-      <a class="credit-link" href="https://docs.google.com/forms/d/e/1FAIpQLSefjbDh_JztVmSsGmdt53mfGFLU_u4FQ272kmhYdw4LKHJPEA/viewform?usp=dialog" target="_blank">登録をする →</a>
+      <a class="credit-link" href="https://docs.google.com/forms/d/e/1FAIpQLSefjbDh_JztVmSsGmdt53mfGFLU_u4FQ272kmhYdw4LKHJPEA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">登録をする →</a>
     </div>
 
     <p style="font-size:0.9rem;margin:20px 0 14px;color:var(--text-secondary);font-family:'Share Tech Mono',monospace;">
@@ -1059,7 +1056,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 <div id="profile-detail" style="display:none;">
     <div style="margin-bottom:20px;">
     <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
-      onclick="document.getElementById('profile-detail').style.display='none';this.closest('#profile-detail').previousElementSibling.querySelector('button').style.display='inline-flex';">
+      onclick="document.getElementById('profile-detail').style.display='none';document.querySelector('#page-character .card button').style.display='inline-flex';">
       閉じる ▲
     </button>
   </div>
@@ -1091,7 +1088,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
   <div style="margin-bottom:20px;">
     <button class="btn btn-outline" style="font-size:0.75rem;padding:10px 20px;"
-      onclick="document.getElementById('profile-detail').style.display='none';this.closest('#profile-detail').previousElementSibling.querySelector('button').style.display='inline-flex';">
+      onclick="document.getElementById('profile-detail').style.display='none';document.querySelector('#page-character .card button').style.display='inline-flex';">
       閉じる ▲
     </button>
   </div>
@@ -1132,7 +1129,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <tr><td>主な意味</td><td>ポポと岐阜の対義語(バナナ説あり)</td></tr>
       <tr><td>公式アカウント</td><td>@newnanatonagano / @nanatonagano_ko</td></tr>
       <tr><td>運営</td><td>@inmukai_syosetu</td></tr>
-      <tr><td>出典</td><td><a href="https://karotter-wiki.vercel.app/article/article.html?id=67cfa4e4-6c6a-40b3-8768-30a8fe25bd99" target="_blank" style="color:var(--accent-red)">カロッター用語辞典 →</a></td></tr>
+      <tr><td>出典</td><td><a href="https://karotter-wiki.vercel.app/article/article.html?id=67cfa4e4-6c6a-40b3-8768-30a8fe25bd99" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red)">カロッター用語辞典 →</a></td></tr>
     </table>
   </div>
 
@@ -1237,7 +1234,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
           <div class="credit-role">PROJECT MANAGER</div>
           <div class="credit-name">@inmukai_syosetu</div>
           <div class="credit-desc">公式アカウントの運営、サイト管理、プロジェクト全般のとりまとめ</div>
-          <a class="credit-link" href="https://karotter.com/profile/inmukai_syosetu" target="_blank">カロッター →</a>
+          <a class="credit-link" href="https://karotter.com/profile/inmukai_syosetu" target="_blank" rel="noopener noreferrer">カロッター →</a>
         </div>
       </div>
       <div class="credit-item">
@@ -1246,7 +1243,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
           <div class="credit-role">OFFICIAL ACCOUNT</div>
           <div class="credit-name">@newnanatonagano</div>
           <div class="credit-desc">ナナと長野プロジェクトの公式カロッターアカウント(メイン)</div>
-          <a class="credit-link" href="https://karotter.com/profile/newnanatonagano" target="_blank">カロッター →</a>
+          <a class="credit-link" href="https://karotter.com/profile/newnanatonagano" target="_blank" rel="noopener noreferrer">カロッター →</a>
         </div>
       </div>
       <div class="credit-item">
@@ -1255,7 +1252,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
           <div class="credit-role">OFFICIAL ACCOUNT (SUB)</div>
           <div class="credit-name">@nanatonagano_ko</div>
           <div class="credit-desc">ななにゃん公式アカウント</div>
-          <a class="credit-link" href="https://karotter.com/profile/nananyanNo001" target="_blank">カロッター →</a>
+          <a class="credit-link" href="https://karotter.com/profile/nananyanNo001" target="_blank" rel="noopener noreferrer">カロッター →</a>
         </div>
       </div>
     </div>
@@ -1265,8 +1262,8 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <table class="info-table">
         <tr><td>UTAU</td><td>飴屋／菖蒲 氏制作のフリーウェア歌声合成ソフト</td></tr>
         <tr><td>OpenUTAU</td><td>Exploiting Cat 制作(MIT License)</td></tr>
-        <tr><td>情報出典</td><td><a href="https://karotter-wiki.vercel.app" target="_blank" style="color:var(--accent-red)">カロッター用語辞典</a></td></tr>
-        <tr><td>プラットフォーム</td><td>カロッター(<a href="https://karotter.com" target="_blank" style="color:var(--accent-red)">Karotter</a>)</td></tr>
+        <tr><td>情報出典</td><td><a href="https://karotter-wiki.vercel.app" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red)">カロッター用語辞典</a></td></tr>
+        <tr><td>プラットフォーム</td><td>カロッター(<a href="https://karotter.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red)">Karotter</a>)</td></tr>
       </table>
     </div>
 
@@ -1335,7 +1332,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <li>楽曲公開時に「ななにゃん」のクレジット表記を記載してください。</li>
       <li>
         具体的な規約内容はPDFをご確認ください。</li>
-        <p> <a href="nanavc.pdf" target="_blank" style="color:var(--accent-red);font-weight:700;">
+        <p> <a href="nanavc.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red);font-weight:700;">
           利用規約PDF →
         </a>
       </p>
@@ -1400,7 +1397,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <li>楽曲公開時に「ななにゃん」のクレジット表記を記載してください。</li>
       <li>
         具体的な規約内容はPDFをご確認ください。</li>
-        <p> <a href="nanaim.pdf" target="_blank" style="color:var(--accent-red);font-weight:700;">
+        <p> <a href="nanaim.pdf" target="_blank" rel="noopener noreferrer"  style="color:var(--accent-red);font-weight:700;">
           利用規約PDF →
         </a>
       </p>
@@ -1460,15 +1457,24 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   © 2026 ナナと長野プロジェクト / @inmukai_syosetu
 </footer>
 
-<script>
+<script defer>
 const validPages = ['home','individual','character','download','goods','credits','terms','privacy'];
 
+const pageCache = {};
+const navCache = {};
+validPages.forEach(p => {
+  pageCache[p] = document.getElementById('page-' + p);
+  navCache[p]  = document.getElementById('nav-' + p);
+});
+
 function renderPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  const nb = document.getElementById('nav-' + name);
-  if (nb) nb.classList.add('active');
+  validPages.forEach(p => {
+    pageCache[p]?.classList.remove('active');
+    navCache[p]?.classList.remove('active');
+  });
+  pageCache[name]?.classList.add('active');
+  navCache[name]?.classList.add('active');
+  currentPage = name;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1489,6 +1495,18 @@ const hash = location.hash.replace('#', '');
 const initPage = (hash && validPages.includes(hash)) ? hash : 'home';
 history.replaceState({ page: initPage }, '', '#' + initPage);
 renderPage(initPage);
+  const boot = document.querySelector('.boot-sequence');
+  if (boot) {
+    setTimeout(() => {
+      boot.style.opacity = '0';
+      setTimeout(() => boot.remove(), 700);
+    }, 2050);
+  }
+  window.addEventListener('load', () => {
+  const img = new Image();
+  img.src = '背景.jpg';
+  img.onload = () => document.body.classList.add('bg-loaded');
+});
 </script>
 </body>
 </html>
