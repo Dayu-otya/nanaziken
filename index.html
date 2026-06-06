@@ -7,10 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style"
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Exo+2:wght@700;900&family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Exo+2:wght@700;900&family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
   onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Exo+2:wght@700;900&family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Exo+2:wght@700;900&family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </noscript>
   
 <style>
@@ -494,6 +494,8 @@ nav button.active {
 .tag.red    { background: rgba(255,23,68,0.15);  color: var(--danger-red);    border-color: var(--danger-red);    box-shadow: 0 0 10px rgba(255,23,68,0.25); }
 
 .btn {
+  -webkit-appearance: none;
+  appearance: none;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -507,7 +509,10 @@ nav button.active {
   letter-spacing: 2px;
   text-transform: uppercase;
   clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  line-height: 1;
+  text-decoration: none;
 }
+
 .btn-primary {
   background: transparent;
   color: var(--accent-red);
@@ -878,7 +883,6 @@ nav button.active {
 }
 
 footer {
-  position: relative;
   text-align: center;
   padding: 36px 20px;
   border-top: 3px solid var(--accent-red);
@@ -1014,8 +1018,8 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     対ぽぽりん殲滅型自律兵装<strong>「ななにゃん」</strong>。UTAU音源として稼働中。
   </p>
   <div class="hero-buttons">
-    <button class="btn btn-primary" onclick="showPage('download')">▶ DOWNLOAD VOICE</button>
-    <button class="btn btn-outline"  onclick="showPage('individual')">READ MORE</button>
+    <button class="btn btn-primary" onclick="showPage('download')">DOWNLOAD VOICE</button>
+    <button class="btn btn-primary" onclick="showPage('individual')">INDIVIDUAL DATA</button>
   </div>
 <div class="char-preview">
     <div class="char-avatar"></div>
@@ -1027,7 +1031,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 <div class="page" id="page-individual">
   <div class="section-wrap">
-    <p class="section-eyebrow">INDIVIDUAL IDENTIFICATION</p>
+    <p class="section-eyebrow">INDIVIDUAL DATA</p>
     <h2 class="section-title">個体識別情報</h2>
 
     <p style="font-size:0.92rem;line-height:2;margin-bottom:20px;">
@@ -1062,12 +1066,13 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
           <tr><td>No.0104</td><td>常に怠惰。だが、実力だけで言えばNo.001と同じくらいかそれ以上の強者。髪を結ぶのがめんどくさいという理由で髪をおろしたままにしている。</td></tr>
           <tr><td>No.0159</td><td>失敗作。人としゃべるのが大の苦手</td></tr>
           <tr><td>No.0237</td><td>ななにゃん達の中で唯一人の感情を理解した個体。感情を理解したことで、ぽぽりんを破壊したくなくなり、使命を捨てポポと岐阜へ逃げた。ぽぽりんと遊ぶのが好き。</td></tr>
-          <tr><td>No.0447</td><td>A.M4:47を知らせる時報bot</td></tr>
+          <tr><td>No.0447</td><td>A.M4:47を知らせる時報bot。</td></tr>
           <tr><td>No.0506</td><td>いつも明るいアイドル的存在。ピコピコハンマーがメイン武器で、サブとして100均のドラゴンの剣を持っている。正直、ぽぽりんを破壊する云々はどうでもいい。</td></tr>
+          <tr><td>No.0552</td><td>事務作業を任されているななにゃん。ぽぽななイラストを隠れて読んでいる。</td></tr>
           <tr><td>No.0810</td><td>不具合により優の感情が少なめ、鬱が多めになってしまった個体。情緒がおかしく、何故かふたばに対して異常に執着している。現在は、ふたば以外を皆殺しにしかけたため、壊されている。</td></tr>
           <tr><td>No.0954</td><td>ゆっくりななにゃん。首だけの特殊個体。ゆっくりぽぽりんとともに解説をする。</td></tr>
           <tr><td>No.2643</td><td>天使。実験的に作られた。開発者も想定していない技(主に魔法)を使って戦う。悪魔(?)ぽぽりんと個人的に対峙している。</td></tr>
-          <tr><td>No.4678</td><td>元気で特に攻撃も少ない個体。ここさんをデレデレに愛す</td></tr>
+          <tr><td>No.4678</td><td>元気で特に攻撃も少ない個体。ここさんをデレデレに愛す。</td></tr>
         </tbody>
       </table>
     </div>
@@ -1213,14 +1218,14 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <h2 class="section-title">ダウンロード</h2>
     
     <div class="dl-hero">
-      <h2>📦 ななにゃん UTAU音源</h2>
+      <h2>ななにゃん UTAU音源</h2>
       <p class="card-heading">ななにゃんのUTAU音源をダウンロードできます。<br>ダウンロード前に必ず利用規約をご確認ください。</p>
     </div>
 
     <div class="notice-box">
       <strong>⚠ ご利用の前に:</strong><br>
       この音源を使用した作品を公開する際は、必ず「ななにゃん(ナナと長野プロジェクト)」のクレジット表記をお願いします。
-      詳細は<a href="#terms" onclick="showPage('terms')" style="color:var(--accent-red);font-weight:700;">利用規約</a>をご覧ください。
+      詳細は<a href="#terms" onclick="showPage('terms'); return false;" style="color:var(--accent-red);font-weight:700;">利用規約</a>をご覧ください。
     </div>
 
     <div class="dl-card">
@@ -1278,7 +1283,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <div class="card">
       <p class="card-heading">プロジェクト参加者</p>
       <div class="credit-item">
-        <div class="credit-avatar">🏠</div>
+        <div class="credit-avatar"><img src="いんむかい.png" alt="いんむかい" width="48" height="48"></div>
         <div>
           <div class="credit-role">PROJECT MANAGER</div>
           <div class="credit-name">@inmukai_syosetu</div>
@@ -1299,7 +1304,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
         <div class="credit-avatar"><img src="ななにゃん3.png" alt="ななにゃん" width="48" height="48"></div>
         <div>
           <div class="credit-role">OFFICIAL ACCOUNT (SUB)</div>
-          <div class="credit-name">@nanatonagano_ko</div>
+          <div class="credit-name">@nananyanNo001</div>
           <div class="credit-desc">ななにゃん公式アカウント</div>
           <a class="credit-link" href="https://karotter.com/profile/nananyanNo001" target="_blank" rel="noopener noreferrer">カロッター →</a>
         </div>
@@ -1497,9 +1502,9 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 <footer>
   <div class="footer-links">
-<a href="#terms" onclick="showPage('terms')">利用規約</a>
-<a href="#privacy" onclick="showPage('privacy')">プライバシーポリシー</a>
-<a href="#credits" onclick="showPage('credits')">クレジット</a>
+<a href="#terms" onclick="showPage('terms'); return false;">利用規約</a>
+<a href="#privacy" onclick="showPage('privacy'); return false;">プライバシーポリシー</a>
+<a href="#credits" onclick="showPage('credits'); return false;">クレジット</a>
   </div>
   © 2026 ナナと長野プロジェクト / @inmukai_syosetu
 </footer>
