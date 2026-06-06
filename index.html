@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style"
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Exo+2:wght@700;900&family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
   onload="this.onload=null;this.rel='stylesheet'">
 <noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Exo+2:wght@700;900&family=Rajdhani:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </noscript>
-
+  
 <style>
 :root {
   --primary-bg: #0a0a0a;
@@ -21,7 +21,7 @@
   --accent-red-dark: #cc0831;
   --accent-orange: #ff4500;
   --text-primary: #ffe0e0;
-  --text-secondary: #b88888;
+  --text-secondary: #d4a0a0;
   --border-color: #3d1a1a;
   --glow-color-strong: rgba(255, 10, 62, 0.6);
   --warning: #ff6600;
@@ -30,7 +30,7 @@
   --system-cyan: #00ffff;
 
   --header-status-h: 28px;
-  --header-main-h: 64px;
+  --header-main-h: 80px;
   --header-total: calc(var(--header-status-h) + var(--header-main-h));
   --page-pt: calc(var(--header-total) + 32px);
   --section-max: 860px;
@@ -51,6 +51,18 @@ body {
   line-height: 1.6;
 }
 
+.card p:not(.card-heading),
+.legal-section p:not(.card-heading),
+.legal-section li,
+.info-table td:last-child,
+.credit-desc,
+.hero-desc,
+.notice-box {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.95rem;
+  line-height: 2.0;
+}
+
 .boot-sequence {
   position: fixed;
   inset: 0;
@@ -61,9 +73,9 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--system-green);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   pointer-events: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.4s ease;
 }
 @keyframes fadeOutBoot { to { opacity: 0; visibility: hidden; } }
 
@@ -72,7 +84,7 @@ body {
   letter-spacing: 2px;
   margin: 6px 0;
   opacity: 0;
-  animation: bootLine 0.2s ease forwards;
+  animation: bootLine 0.4s ease forwards;
 }
 .boot-text:nth-child(1) { animation-delay: 0.2s; }
 .boot-text:nth-child(2) { animation-delay: 0.5s; }
@@ -112,7 +124,7 @@ body.bg-loaded::before {
 }
 
 .system-status {
-  position: fixed;
+  position: static;
   top: 0; left: 0; right: 0;
   height: var(--header-status-h);
   background: rgba(0,0,0,0.97);
@@ -122,7 +134,7 @@ body.bg-loaded::before {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   color: var(--system-green);
   letter-spacing: 1px;
@@ -155,19 +167,18 @@ body.bg-loaded::before {
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
 header {
-  position: fixed;
-  top: var(--header-status-h);
+  position: static;
   left: 0; right: 0;
   height: var(--header-main-h);
   z-index: 199;
   backdrop-filter: blur(16px) saturate(170%);
   background: linear-gradient(180deg, rgba(10,10,10,0.99) 0%, rgba(26,15,15,0.97) 100%);
   border-bottom: 2px solid var(--accent-red);
-  padding: 0 24px;
+  padding: 0 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 24px;
   box-shadow: 0 3px 24px rgba(255,10,62,0.35), 0 0 60px rgba(255,10,62,0.1);
 }
 
@@ -177,7 +188,7 @@ header::after {
   bottom: -18px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
   color: var(--danger-red);
   letter-spacing: 3px;
@@ -188,8 +199,8 @@ header::after {
 @keyframes warningFlash { 0%,100%{opacity:0.5;} 50%{opacity:0.15;} }
 
 .logo {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.25rem;
+  font-family: 'Exo 2', monospace;
+  font-size: 1.35rem;
   font-weight: 900;
   color: var(--accent-red);
   letter-spacing: 4px;
@@ -198,7 +209,7 @@ header::after {
   align-items: center;
   gap: 10px;
   text-shadow: 0 0 20px rgba(255,10,62,0.8), 0 0 40px rgba(255,10,62,0.4);
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: 1.5px solid var(--accent-red);
   border-left: 4px solid var(--danger-red);
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
@@ -206,6 +217,7 @@ header::after {
   position: relative;
   flex-shrink: 0;
   transition: box-shadow 0.3s;
+  overflow: visible;
 }
 .logo:hover { box-shadow: 0 0 30px rgba(255,10,62,0.5); }
 .logo::before { content: '▸▸'; color: var(--danger-red); margin-right: 4px; animation: blinkFast 1s infinite; font-size: 0.9rem; }
@@ -213,21 +225,7 @@ header::after {
 
 .logo-block { display: flex; flex-direction: column; }
 .logo-main  { line-height: 1.1; }
-.logo-sub   { font-size: 0.55rem; color: var(--text-secondary); letter-spacing: 1.5px; font-family: 'Share Tech Mono', monospace; margin-top: 2px; }
-
-.logo-badge {
-  position: absolute;
-  top: -7px; right: -7px;
-  background: var(--danger-red);
-  color: #000;
-  font-size: 0.5rem;
-  font-weight: 900;
-  padding: 2px 6px;
-  letter-spacing: 1px;
-  box-shadow: 0 0 12px var(--danger-red);
-  animation: pulseBadge 2s ease-in-out infinite;
-}
-@keyframes pulseBadge { 0%,100%{transform:scale(1);} 50%{transform:scale(1.12);} }
+.logo-sub   { font-size: 0.55rem; color: var(--text-secondary); letter-spacing: 1.5px; font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
 
 nav {
   display: flex;
@@ -238,21 +236,24 @@ nav {
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 16px;
+  mask-image: linear-gradient(to right, transparent 0%, black 4px, black calc(100% - 4px), transparent 100%);
 }
 nav::-webkit-scrollbar { display: none; }
 
 nav button {
   background: transparent;
   border: 1.5px solid var(--border-color);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-secondary);
   cursor: pointer;
-  padding: 7px 14px;
+  padding: 9px 18px;
   transition: all 0.25s;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   white-space: nowrap;
   clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
@@ -296,7 +297,7 @@ nav button.active {
 .page {
   display: none;
   min-height: 100vh;
-  padding-top: var(--page-pt);
+  padding-top: 50px;
   position: relative;
   z-index: 3;
   isolation: isolate;
@@ -334,27 +335,28 @@ nav button.active {
 }
 
 .section-eyebrow {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--accent-red);
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 8px;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .section-title {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.9rem;
+  font-family: 'Exo 2', monospace;
+  font-size: clamp(1.3rem, 4vw, 1.9rem);
   font-weight: 900;
   color: var(--accent-red);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   display: flex;
   align-items: center;
   gap: 14px;
-  letter-spacing: 4px;
+  letter-spacing: clamp(1px, 1vw, 4px);
   text-shadow: 0 0 20px rgba(255,10,62,0.5);
 }
+
 .section-title::before {
   content: '>>>';
   color: var(--danger-red);
@@ -373,7 +375,7 @@ nav button.active {
 
 .card {
   background: linear-gradient(135deg, rgba(26,15,15,0.88) 0%, rgba(10,10,10,0.96) 100%);
-  padding: 14px 16px;
+  padding: 24px 28px;
   box-shadow: 0 0 28px rgba(255,10,62,0.18);
   border: 1.5px solid var(--border-color);
   border-left: 5px solid var(--accent-red);
@@ -401,7 +403,7 @@ nav button.active {
 .card-label {
   font-size: 0.68rem;
   font-weight: 900;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   color: var(--accent-red);
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -410,43 +412,66 @@ nav button.active {
   border-bottom: 1px solid var(--border-color);
   text-shadow: 0 0 10px rgba(255,10,62,0.4);
 }
-.card-label::before { content: '[[ '; color: var(--danger-red); }
-.card-label::after  { content: ' ]]'; color: var(--danger-red); }
 
 .card p {
-  font-size: 0.93rem;
-  line-height: 2.1;
+  font-size: 1rem;
+  line-height: 2.0;
   color: var(--text-primary);
+}
+
+.card-heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: var(--accent-red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  text-shadow: 0 0 10px rgba(255,10,62,0.4);
 }
 
 .info-table { width: 100%; border-collapse: collapse; }
 .info-table th {
   background: rgba(255,10,62,0.18);
   color: var(--accent-red);
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 0.7rem;
   padding: 10px 14px;
   text-align: left;
   letter-spacing: 1px;
 }
 .info-table td {
-  padding: 13px 14px;
-  font-size: 0.9rem;
+  padding: 14px 16px;
+  font-size: 0.95rem;
   border-bottom: 1px solid var(--border-color);
   vertical-align: top;
-  font-family: 'Rajdhani', sans-serif;
-  line-height: 1.7;
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.9;
 }
+
+.info-table tbody tr:nth-child(even) td {
+  background: rgba(255, 10, 62, 0.04);
+}
+
+.info-table tbody tr:hover td {
+  background: rgba(255, 10, 62, 0.09);
+  transition: background 0.2s ease;
+}
+
 .info-table td:first-child {
   font-weight: 700;
   color: var(--accent-red);
-  width: 170px;
-  white-space: nowrap;
-  font-family: 'Share Tech Mono', monospace;
+  width: clamp(110px, 22%, 170px);
+  white-space: normal;
+  word-break: keep-all;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.82rem;
   letter-spacing: 0.5px;
   text-shadow: 0 0 10px rgba(255,10,62,0.35);
 }
+
 .info-table td:first-child::before { content: '▸ '; color: var(--danger-red); }
 .info-table tr:last-child td { border-bottom: none; }
 
@@ -456,7 +481,7 @@ nav button.active {
   color: var(--accent-red);
   font-size: 0.65rem;
   font-weight: 900;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   padding: 5px 12px;
   margin: 3px;
   border: 1.5px solid var(--accent-red);
@@ -473,7 +498,7 @@ nav button.active {
   align-items: center;
   gap: 10px;
   padding: 14px 28px;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
@@ -512,7 +537,7 @@ nav button.active {
   gap: 10px;
   background: rgba(255,23,68,0.12);
   color: var(--danger-red);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   font-weight: 900;
   letter-spacing: 0.22em;
@@ -530,7 +555,7 @@ nav button.active {
 @keyframes arrowBlink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
 .hero-title {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: clamp(3rem, 9vw, 6rem);
   color: var(--accent-red);
   line-height: 1;
@@ -556,21 +581,22 @@ nav button.active {
   color: var(--text-secondary);
   letter-spacing: 0.5em;
   margin-bottom: 32px;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   opacity: 0.75;
 }
 
 .hero-desc {
   max-width: 580px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 2.1;
   color: var(--text-primary);
   margin-bottom: 40px;
   border-left: 4px solid var(--accent-red);
-  padding: 18px 22px 18px 26px;
+  padding: 20px 28px 20px 28px;
   background: rgba(255,10,62,0.05);
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
   text-align: left;
+  width: 100%;
 }
 
 .hero-buttons {
@@ -611,7 +637,7 @@ nav button.active {
   clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
 }
 .char-name-tag::before, .char-name-tag::after {
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
   color: var(--accent-red);
   position: absolute;
@@ -622,7 +648,7 @@ nav button.active {
 .char-name-tag::after  { content: '>>>'; right: 10px; }
 @keyframes arrowPulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 .char-name-tag h2 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 1.6rem;
   color: var(--accent-red);
   letter-spacing: 5px;
@@ -644,7 +670,7 @@ nav button.active {
 .dl-hero::before {
   content: 'DOWNLOAD';
   position: absolute;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 130px;
   font-weight: 900;
   right: -30px; top: -40px;
@@ -654,7 +680,7 @@ nav button.active {
   pointer-events: none;
 }
 .dl-hero h2 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 2rem;
   margin-bottom: 10px;
   color: var(--accent-red);
@@ -692,7 +718,7 @@ nav button.active {
   box-shadow: 0 0 20px rgba(255,10,62,0.3);
 }
 .dl-info { flex: 1; min-width: 0; }
-.dl-info h3 { font-family: 'Orbitron', monospace; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 5px; letter-spacing: 1.5px; }
+.dl-info h3 { font-family: 'Exo 2', monospace; font-size: 1.05rem; color: var(--text-primary); margin-bottom: 5px; letter-spacing: 1.5px; }
 .dl-info p  { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.75; }
 .dl-meta    { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
 
@@ -701,7 +727,7 @@ nav button.active {
   color: var(--accent-red);
   border: 2px solid var(--accent-red);
   padding: 12px 22px;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 0.7rem;
   font-weight: 700;
   cursor: pointer;
@@ -727,7 +753,7 @@ nav button.active {
   clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
   box-shadow: 0 0 20px rgba(255,102,0,0.2);
 }
-.notice-box strong { color: var(--warning); font-family: 'Share Tech Mono', monospace; letter-spacing: 0.5px; }
+.notice-box strong { color: var(--warning); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
 
 .meme-box {
   background: linear-gradient(135deg, rgba(255,10,62,0.08), rgba(255,69,0,0.08));
@@ -738,10 +764,10 @@ nav button.active {
   position: relative;
   clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
 }
-.meme-box::before { content: '<<<'; position: absolute; left: 16px; top: 16px; color: var(--accent-red); font-family: 'Share Tech Mono', monospace; font-size: 1.3rem; opacity: 0.5; }
-.meme-box::after  { content: '>>>'; position: absolute; right: 16px; bottom: 16px; color: var(--accent-red); font-family: 'Share Tech Mono', monospace; font-size: 1.3rem; opacity: 0.5; }
+.meme-box::before { content: '<<<'; position: absolute; left: 16px; top: 16px; color: var(--accent-red); font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; opacity: 0.5; }
+.meme-box::after  { content: '>>>'; position: absolute; right: 16px; bottom: 16px; color: var(--accent-red); font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; opacity: 0.5; }
 .meme-word {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-size: 2.4rem;
   font-weight: 900;
   color: var(--accent-red);
@@ -749,8 +775,8 @@ nav button.active {
   letter-spacing: 7px;
   text-shadow: 0 0 28px rgba(255,10,62,0.7);
 }
-.meme-vs { font-size: 0.8rem; color: var(--text-secondary); font-family: 'Share Tech Mono', monospace; }
-.meme-antonym { font-family: 'Orbitron', monospace; font-size: 1.6rem; color: var(--accent-orange); text-decoration: line-through; opacity: 0.45; letter-spacing: 4px; }
+.meme-vs { font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+.meme-antonym { font-family: 'Exo 2', monospace; font-size: 1.6rem; color: var(--accent-orange); text-decoration: line-through; opacity: 0.45; letter-spacing: 4px; }
 
 .credit-item {
   display: flex;
@@ -769,8 +795,8 @@ nav button.active {
   flex-shrink: 0;
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
 }
-.credit-role { font-size: 0.62rem; color: var(--accent-red); font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 10px rgba(255,10,62,0.35); }
-.credit-name { font-size: 1rem; font-weight: 700; font-family: 'Orbitron', monospace; color: var(--text-primary); letter-spacing: 0.5px; margin: 2px 0; }
+.credit-role { font-size: 0.62rem; color: var(--accent-red); font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; text-shadow: 0 0 10px rgba(255,10,62,0.35); }
+.credit-name { font-size: 1rem; font-weight: 700; font-family: 'Exo 2', monospace; color: var(--text-primary); letter-spacing: 0.5px; margin: 2px 0; }
 .credit-desc { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.75; }
 .credit-link { font-size: 0.78rem; color: var(--accent-red); text-decoration: none; font-weight: 700; display: inline-block; margin-top: 4px; }
 .credit-link:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,62,0.5); }
@@ -779,6 +805,7 @@ nav button.active {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  align-items: start;
 }
 
 .terms-panel {
@@ -791,7 +818,7 @@ nav button.active {
   color: var(--accent-red);
   padding: 14px;
   text-align: center;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   font-weight: 700;
   margin-bottom: 12px;
   letter-spacing: 2px;
@@ -805,7 +832,7 @@ nav button.active {
 .legal-section h3 {
   font-size: 1rem;
   font-weight: 700;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
   color: var(--accent-red);
   margin: 28px 0 10px;
   padding-left: 14px;
@@ -814,16 +841,36 @@ nav button.active {
   text-shadow: 0 0 10px rgba(255,10,62,0.35);
 }
 .legal-section h3:first-child { margin-top: 0; }
-.legal-section p { font-size: 0.88rem; line-height: 2.1; color: var(--text-primary); margin-bottom: 10px; }
+.legal-section p {
+  font-size: 0.88rem;
+  line-height: 2.1;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
 .legal-section ol,
-.legal-section ul { padding-left: 26px; font-size: 0.88rem; line-height: 2.1; color: var(--text-primary); margin-bottom: 10px; }
+.legal-section ul { 
+  padding-left: 26px; 
+  font-size: 0.9rem;
+  line-height: 2.1; 
+  color: var(--text-primary); 
+  margin-bottom: 16px;
+}
+
+.legal-section li {
+  margin-bottom: 4px;
+  padding-left: 4px;
+}
+
+.legal-section ul li::marker {
+  color: var(--accent-red);
+}
 
 .code-block {
   background: rgba(255,10,62,0.08);
   border: 1.5px solid var(--accent-red);
   padding: 16px 20px;
   margin: 12px 0;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.82rem;
   line-height: 2;
   color: var(--text-primary);
@@ -841,7 +888,7 @@ footer {
   background: linear-gradient(180deg, rgba(26,15,15,0.97) 0%, rgba(10,10,10,0.99) 100%);
   box-shadow: 0 -3px 28px rgba(255,10,62,0.2);
 }
-footer a { color: var(--accent-red); text-decoration: none; font-weight: 700; font-family: 'Share Tech Mono', monospace; }
+footer a { color: var(--accent-red); text-decoration: none; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
 footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,62,0.5); }
 .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
 
@@ -869,17 +916,17 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
 }
 .char-meta { flex: 1; min-width: 220px; }
-.char-name { font-family: 'Orbitron', monospace; font-size: 1.8rem; color: var(--accent-red); margin-bottom: 5px; letter-spacing: 4px; text-shadow: 0 0 22px rgba(255,10,62,0.6); }
-.char-sub  { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 14px; font-family: 'Share Tech Mono', monospace; }
+.char-name { font-family: 'Exo 2', monospace; font-size: 1.8rem; color: var(--accent-red); margin-bottom: 5px; letter-spacing: 4px; text-shadow: 0 0 22px rgba(255,10,62,0.6); }
+.char-sub  { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
 
 @media (max-width: 700px) {
   :root {
     --header-status-h: 24px;
-    --header-main-h: 56px;
+    --header-main-h: 68px;
     --page-pt: calc(var(--header-status-h) + var(--header-main-h) + 24px);
   }
 
-  header { padding: 0 14px; gap: 10px; }
+  header { padding: 0 20px; gap: 14px; }
   .logo  { font-size: 1rem; padding: 6px 12px; letter-spacing: 2px; }
   .logo-sub { display: none; }
 
@@ -888,7 +935,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   .section-wrap { padding: 0 16px 80px; }
   .section-title { font-size: 1.5rem; letter-spacing: 2px; }
 
-  .card { padding: 20px 18px; }
+  .card { padding: 18px 16px; } 
   .card-label { font-size: 0.62rem; }
   .info-table td:first-child { width: 120px; font-size: 0.75rem; }
 
@@ -907,7 +954,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 }
 
 @media (max-width: 440px) {
-  .logo-badge { display: none; }
   nav button  { padding: 5px 8px; font-size: 0.58rem; letter-spacing: 0.5px; }
   .hero-title { font-size: 2.5rem; }
 }
@@ -945,7 +991,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <div class="logo-main">UNIT-0001</div>
       <div class="logo-sub">ななにゃん / NANA-NYAN</div>
     </div>
-    <span class="logo-badge">ALERT</span>
   </div>
   <nav>
     <button onclick="showPage('home')"       id="nav-home"       class="active">HOME</button>
@@ -962,14 +1007,14 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 <div class="page" id="page-home">
   <div class="section-wrap" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding-bottom: 80px;">
     <span class="hero-badge">ANTI-POPPO ANNIHILATION SYSTEM</span>
-    <h1 class="hero-title">なな<span>にゃん</span></h1>
+    <h1 class="hero-title">ななにゃん</h1>
     <p class="hero-kana">UNIT-0001 / NANA-NYAN</p>
   <p class="hero-desc">
     2026年3月23日、カロッターSNSに誕生した言葉遊び「ナナと長野」から派生した<br>
     対ぽぽりん殲滅型自律兵装<strong>「ななにゃん」</strong>。UTAU音源として稼働中。
   </p>
   <div class="hero-buttons">
-    <button class="btn btn-primary" onclick="showPage('download')">📦 DOWNLOAD VOICE</button>
+    <button class="btn btn-primary" onclick="showPage('download')">▶ DOWNLOAD VOICE</button>
     <button class="btn btn-outline"  onclick="showPage('individual')">READ MORE</button>
   </div>
 <div class="char-preview">
@@ -990,7 +1035,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </p>
 
     <div class="card">
-      <p>個体登録</p>
+      <p class="card-heading">個体登録</p>
       <p style="font-size:0.9rem;margin-bottom:14px;line-height:2;">
         個体情報の登録が出来ます。番号がかぶった場合は先着順とさせていただきます。
       </p>
@@ -1037,7 +1082,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 
 <div class="card">
-  <p>プロフィール概要</p>
+  <p class="card-heading">プロフィール概要</p>
   <table class="info-table">
     <tr><td>名前</td><td>ななにゃん(Nana-nyan)</td></tr>
     <tr><td>型式番号</td><td>No.0001</td></tr>
@@ -1061,7 +1106,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </button>
   </div>
   <div class="card">
-    <p>詳細プロフィール</p>
+    <p class="card-heading">詳細プロフィール</p>
     <table class="info-table">
       <tr><td>名前</td><td>ななにゃん(Nana-nyan)</td></tr>
       <tr><td>型式番号</td><td>No.0001</td></tr>
@@ -1077,7 +1122,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </div>
 
   <div class="card">
-    <p>設定</p>
+    <p class="card-heading">設定</p>
     <p>
       ななにゃんは、「ナナと長野」ミームをもとに開発された対ぽぽ存在兵器。<br><br>
       0001〜7710までの識別個体が存在しており、現在確認されている個体はその一部のみである。<br><br>
@@ -1099,7 +1144,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 
 <div class="card">
-  <p>概要</p>
+  <p class="card-heading">概要</p>
   <p>
     2026年3月23日、SNS「Karotter」で <strong>@Dragon_poweeeer</strong> 氏が生み出した言葉遊び・ネットミーム。
     「ポポと岐阜」の対義語として定義されており、「バナナ」という説も存在する。
@@ -1120,7 +1165,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </button>
   </div>
   <div class="card">
-    <p>基本情報</p>
+    <p class="card-heading">基本情報</p>
     <table class="info-table">
       <tr><td>読み</td><td>ななとながの</td></tr>
       <tr><td>カテゴリ</td><td><span class="tag">スラング</span><span class="tag red">言葉遊び</span><span class="tag orange">ミーム</span></td></tr>
@@ -1134,7 +1179,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
   </div>
 
   <div class="card">
-    <p>発展と広まり</p>
+    <p class="card-heading">発展と広まり</p>
     <p>
       もともとカロッター内の一投稿から始まったこの言葉遊びは、そのシュールさとリズムの良さからじわじわと拡散。
       2026年5月時点では公式アカウントが2つ立ち上がり、ミームとしての地位を確立した。<br><br>
@@ -1151,7 +1196,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 </div>
 
     <div class="card" style="background:linear-gradient(135deg,rgba(255,10,62,0.08),rgba(255,69,0,0.08));border-left-color:var(--danger-red);">
-      <p>UTAU音源について</p>
+      <p class="card-heading">UTAU音源について</p>
       <p style="margin-bottom:18px;">
         ななにゃんのUTAU音源は現在製作中です。<br>
         完成次第、このサイトのダウンロードページにて無料配布予定です。<br>
@@ -1163,23 +1208,26 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 </div>
 
 <div class="page" id="page-download">
-  <div class="section-wrap">
+    <div class="section-wrap">
+    <p class="section-eyebrow">DOWNLOAD</p>
+    <h2 class="section-title">ダウンロード</h2>
+    
     <div class="dl-hero">
       <h2>📦 ななにゃん UTAU音源</h2>
-      <p>ななにゃんのUTAU音源をダウンロードできます。<br>ダウンロード前に必ず利用規約をご確認ください。</p>
+      <p class="card-heading">ななにゃんのUTAU音源をダウンロードできます。<br>ダウンロード前に必ず利用規約をご確認ください。</p>
     </div>
 
     <div class="notice-box">
       <strong>⚠ ご利用の前に:</strong><br>
       この音源を使用した作品を公開する際は、必ず「ななにゃん(ナナと長野プロジェクト)」のクレジット表記をお願いします。
-      詳細は<a href="#" onclick="showPage('terms')" style="color:var(--accent-red);font-weight:700;">利用規約</a>をご覧ください。
+      詳細は<a href="#terms" onclick="showPage('terms')" style="color:var(--accent-red);font-weight:700;">利用規約</a>をご覧ください。
     </div>
 
     <div class="dl-card">
-      <div class="dl-icon">🌸</div>
+      <div class="credit-avatar"><img src="ななにゃん2.png" alt="ななにゃん" width="48" height="48"></div>
       <div class="dl-info">
         <h3>UTAU音源</h3>
-        <p>ダウンロード待ってるよー</p>
+        <p class="card-heading">ダウンロード待ってるよー</p>
         <div class="dl-meta">
           <span class="tag">UTAU対応</span>
           <span class="tag red">ver 0.0</span>
@@ -1190,7 +1238,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </div>
 
     <div class="card" style="margin-top:8px;">
-      <p>動作環境・推奨設定</p>
+      <p class="card-heading">動作環境・推奨設定</p>
       <table class="info-table">
         <tr><td>対応ソフト</td><td>UTAU(v0.4.18e 以降推奨) / OpenUTAU</td></tr>
         <tr><td>対応OS</td><td>Windows 10/11、macOS(OpenUTAU経由)</td></tr>
@@ -1201,7 +1249,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </div>
 
     <div class="card">
-      <p>更新履歴</p>
+      <p class="card-heading">更新履歴</p>
       <p style="color:var(--text-secondary);font-size:0.87rem;font-family:'Share Tech Mono',monospace;line-height:2.2;">
         2026.05.22 — サイト公開、音源は準備中<br>
         2026.03.23 — ナナと長野ミーム誕生(起源)
@@ -1215,6 +1263,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <p class="section-eyebrow">GOODS</p>
     <h2 class="section-title">グッズ</h2>
     <div class="card">
+      <p class="card-heading">グッズ</p>
       <p>現在、ななにゃんの公式グッズは準備中です。<br>完成次第、このページでお知らせします。</p>
     </div>
   </div>
@@ -1227,7 +1276,7 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <h2 class="section-title">クレジット</h2>
 
     <div class="card">
-      <p>プロジェクト参加者</p>
+      <p class="card-heading">プロジェクト参加者</p>
       <div class="credit-item">
         <div class="credit-avatar">🏠</div>
         <div>
@@ -1238,16 +1287,16 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
         </div>
       </div>
       <div class="credit-item">
-        <div class="credit-avatar">📢</div>
+        <div class="credit-avatar"><img src="ナナと長野.png" alt="ナナと長野" width="64" height="64"></div>
         <div>
           <div class="credit-role">OFFICIAL ACCOUNT</div>
           <div class="credit-name">@newnanatonagano</div>
-          <div class="credit-desc">ナナと長野プロジェクトの公式カロッターアカウント(メイン)</div>
+          <div class="credit-desc">ナナと長野プロジェクトの公式アカウント</div>
           <a class="credit-link" href="https://karotter.com/profile/newnanatonagano" target="_blank" rel="noopener noreferrer">カロッター →</a>
         </div>
       </div>
       <div class="credit-item">
-        <div class="credit-avatar">📣</div>
+        <div class="credit-avatar"><img src="ななにゃん3.png" alt="ななにゃん" width="48" height="48"></div>
         <div>
           <div class="credit-role">OFFICIAL ACCOUNT (SUB)</div>
           <div class="credit-name">@nanatonagano_ko</div>
@@ -1258,12 +1307,12 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     </div>
 
     <div class="card">
-      <p>使用ツール・素材</p>
+      <p class="card-heading">使用ツール・素材</p>
       <table class="info-table">
         <tr><td>UTAU</td><td>飴屋／菖蒲 氏制作のフリーウェア歌声合成ソフト</td></tr>
         <tr><td>OpenUTAU</td><td>Exploiting Cat 制作(MIT License)</td></tr>
         <tr><td>情報出典</td><td><a href="https://karotter-wiki.vercel.app" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red)">カロッター用語辞典</a></td></tr>
-        <tr><td>プラットフォーム</td><td>カロッター(<a href="https://karotter.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red)">Karotter</a>)</td></tr>
+        <tr><td>プラットフォーム</td><td><a href="https://karotter.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red)">Karotter</a></td></tr>
       </table>
     </div>
 
@@ -1331,11 +1380,11 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <ul>
       <li>楽曲公開時に「ななにゃん」のクレジット表記を記載してください。</li>
       <li>
-        具体的な規約内容はPDFをご確認ください。</li>
+        具体的な規約内容はPDFをご確認ください。
         <p> <a href="nanavc.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--accent-red);font-weight:700;">
           利用規約PDF →
-        </a>
-      </p>
+        </a></p>
+      </li>
     </ul>
   </div>
 
@@ -1354,10 +1403,12 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
       <li>服装やスタイルのアレンジ（基本デザインを維持）</li>
       <li>ストーリー内での性格の掘り下げ</li>
       <li>背景設定の拡張（矛盾しない範囲）</li>
-      <li>成人向け表現（R18）</li>
-      <p>→ 年齢制限タグ・警告・プラットフォーム規約遵守が必須</p>
-      <li>収益化プラットフォームでの投稿（YouTube等）</li>
-      <p>→ 申請不要で収益化可能</p>
+      <li>成人向け表現（R18）
+        <p style="margin:4px 0 0;opacity:0.8;">→ 年齢制限タグ・警告・プラットフォーム規約遵守が必須</p>
+      </li>
+      <li>収益化プラットフォームでの投稿（YouTube等）
+        <p style="margin:4px 0 0;opacity:0.8;">→ 申請不要で収益化可能</p>
+      </li>
     </ul>
 
     <h3>禁止事項</h3>
@@ -1396,21 +1447,18 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <ul>
       <li>楽曲公開時に「ななにゃん」のクレジット表記を記載してください。</li>
       <li>
-        具体的な規約内容はPDFをご確認ください。</li>
+        具体的な規約内容はPDFをご確認ください。
         <p> <a href="nanaim.pdf" target="_blank" rel="noopener noreferrer"  style="color:var(--accent-red);font-weight:700;">
           利用規約PDF →
-        </a>
-      </p>
+        </a></p>
+      </li>
     </ul>
-
   </div>
 
 </div>
 
 <div class="card legal-section">
-
-  <h3>お問い合わせ</h3>
-
+  <p class="card-heading">お問い合わせ</p>
   <p>
     ご不明点は、カロッターアカウント
     <strong>@inmukai_syosetu</strong>、
@@ -1418,7 +1466,6 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
     <strong>@newnanatonagano</strong>
     までお気軽にお問い合わせください。
   </p>
-
 </div>
   </div>
     
@@ -1450,15 +1497,16 @@ footer a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,10,6
 
 <footer>
   <div class="footer-links">
-    <a href="#" onclick="showPage('terms')">利用規約</a>
-    <a href="#" onclick="showPage('privacy')">プライバシーポリシー</a>
-    <a href="#" onclick="showPage('credits')">クレジット</a>
+<a href="#terms" onclick="showPage('terms')">利用規約</a>
+<a href="#privacy" onclick="showPage('privacy')">プライバシーポリシー</a>
+<a href="#credits" onclick="showPage('credits')">クレジット</a>
   </div>
   © 2026 ナナと長野プロジェクト / @inmukai_syosetu
 </footer>
 
 <script defer>
 const validPages = ['home','individual','character','download','goods','credits','terms','privacy'];
+let currentPage = 'home';
 
 const pageCache = {};
 const navCache = {};
@@ -1500,7 +1548,7 @@ renderPage(initPage);
     setTimeout(() => {
       boot.style.opacity = '0';
       setTimeout(() => boot.remove(), 700);
-    }, 2050);
+    }, 2150);
   }
   window.addEventListener('load', () => {
   const img = new Image();
